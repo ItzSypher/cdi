@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* Tokens: claro por padrão, escuro sob [data-theme="dark"]. */
+:root {
+  --bg: #f2f5f9;
+  --bg-soft: #e8edf4;
+  --surface: #fbfcfe;
+  --ink: #0a1220;
+  --muted: #4b5767;
+  --line: #d6dee8;
+  --accent: #1a63d8;
+  --accent-ink: #f7faff;
+  --accent-soft: #dfeafc;
+  --shadow: 0 1px 0 rgb(10 18 32 / 0.04), 0 18px 40px -24px rgb(16 54 120 / 0.28);
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --bg: #070a10;
+  --bg-soft: #0c1119;
+  --surface: #0f1620;
+  --ink: #eef3f9;
+  --muted: #98a6b8;
+  --line: #1d2734;
+  --accent: #2f7bf0;
+  --accent-ink: #f7faff;
+  --accent-soft: #10213d;
+  --shadow: 0 1px 0 rgb(255 255 255 / 0.03) inset, 0 24px 48px -28px rgb(0 0 0 / 0.8);
+  color-scheme: dark;
+}
+
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --color-bg: var(--bg);
+  --color-bg-soft: var(--bg-soft);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --shadow-card: var(--shadow);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* slider da calculadora */
+input[type="range"].faixa {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 28px;
+  background: transparent;
+  cursor: pointer;
+}
+input[type="range"].faixa::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--accent) var(--p, 50%), var(--line) var(--p, 50%));
+}
+input[type="range"].faixa::-moz-range-track {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--line);
+}
+input[type="range"].faixa::-moz-range-progress {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--accent);
+}
+input[type="range"].faixa::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  margin-top: -9px;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 2px solid var(--accent);
+  box-shadow: 0 2px 8px rgb(16 54 120 / 0.25);
+  transition: transform 0.15s ease;
+}
+input[type="range"].faixa::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 2px solid var(--accent);
+}
+input[type="range"].faixa:active::-webkit-slider-thumb {
+  transform: scale(1.12);
+}
+input[type="range"].faixa:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
